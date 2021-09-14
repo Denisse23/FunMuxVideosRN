@@ -1,4 +1,4 @@
-package com.funmuxvideosrn;
+package com.avonisse.funmuxvideosrn;
 
 import com.facebook.react.ReactActivity;
 
