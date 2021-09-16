@@ -10,6 +10,7 @@
         "firstNameLabel": "First Name",
         "firstNamePlaceholder": "John",
         "lastNameLabel": "Last Name",
-        "lastNamePlaceholder": "Baldwin"
+        "lastNamePlaceholder": "Baldwin",
+        "returnToLogin": "I already have an account!"
     }
 }
