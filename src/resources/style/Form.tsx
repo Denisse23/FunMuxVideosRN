@@ -3,7 +3,7 @@ import { moderateScale } from 'react-native-size-matters';
 
 const Form = StyleSheet.create({
     keyboarView: {
-        width: '100%'
+        width: '100%',
     },
     input: {
         width: "100%",

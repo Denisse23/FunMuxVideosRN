@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Layout } from '@ui-kitten/components';
 
 type Pros = {
@@ -7,8 +8,10 @@ type Pros = {
 }
 
 const BaseScreen = ({ children }: Pros) => {
+    const {top} = useSafeAreaInsets();
+
     return (
-        <Layout style={styles.parentStyle}>
+        <Layout style={{... styles.parentStyle , marginTop: top}}>
             {children}
         </Layout>
     )
@@ -17,8 +20,6 @@ const BaseScreen = ({ children }: Pros) => {
 const styles = StyleSheet.create({
     parentStyle: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
     },
     
 });

@@ -3,6 +3,13 @@
         "emailLabel": "Email",
         "passwordLabel": "Password",
         "emailPlaceholder": "Type your email here",
-        "passwordPlaceholder": "Type your password here"
+        "passwordPlaceholder": "Type your password here",
+        "signUp": "Sign Up"
+    },
+    "signup": {
+        "firstNameLabel": "First Name",
+        "firstNamePlaceholder": "John",
+        "lastNameLabel": "Last Name",
+        "lastNamePlaceholder": "Baldwin"
     }
 }
