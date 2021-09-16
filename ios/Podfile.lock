@@ -361,6 +361,10 @@ PODS:
   - RNFBApp (12.7.5):
     - Firebase/CoreOnly (= 8.6.0)
     - React-Core
+  - RNLocalize (2.1.4):
+    - React-Core
+  - RNSVG (12.1.1):
+    - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -417,6 +421,8 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - RNLocalize (from `../node_modules/react-native-localize`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -501,6 +507,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -554,6 +564,8 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 85187f19dd9c47a7c102f9994f9d14e4dc2110de
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
   RNFBApp: 46a6918f6b1bbb0b332fafb07ef1362bd96ca857
+  RNLocalize: 7f1e5792b65a839af55a9552d05b3558b66d017e
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
