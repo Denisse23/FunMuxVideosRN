@@ -1,3 +1,8 @@
 {
-    "hello": "Hello!"
+    "login": {
+        "emailLabel": "Email",
+        "passwordLabel": "Password",
+        "emailPlaceholder": "Type your email here",
+        "passwordPlaceholder": "Type your password here"
+    }
 }
