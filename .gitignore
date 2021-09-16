@@ -57,3 +57,10 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# env
+.env
+
+# firebase configuration
+*/*/google-services.json
+*/GoogleService-Info.plist
