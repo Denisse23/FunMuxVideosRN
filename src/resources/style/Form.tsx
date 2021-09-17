@@ -7,7 +7,7 @@ const Form = StyleSheet.create({
     },
     input: {
         width: "100%",
-        padding: moderateScale(20),
+        padding: moderateScale(12),
         borderRadius: moderateScale(10),
         paddingHorizontal: moderateScale(50)
     },

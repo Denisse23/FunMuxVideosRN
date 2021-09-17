@@ -1,16 +1,20 @@
 {
     "login": {
+        "loginTitle": "Sing into your account",
         "emailLabel": "Email",
         "passwordLabel": "Password",
         "emailPlaceholder": "Type your email here",
         "passwordPlaceholder": "Type your password here",
-        "signUp": "Sign Up"
+        "signUp": "Sign Up",
+        "login": "Login"
     },
     "signup": {
+        "signUpTitle": "Create a new account",
         "firstNameLabel": "First Name",
         "firstNamePlaceholder": "John",
         "lastNameLabel": "Last Name",
         "lastNamePlaceholder": "Baldwin",
+        "confirmPasswordLabel": "Confirm your password",
         "returnToLogin": "I already have an account!"
     }
 }

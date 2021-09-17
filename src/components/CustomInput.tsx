@@ -9,8 +9,13 @@ const CustomInput = (props: InputProps ) => {
         <Layout>
           <Input
             {...props}
-            label={label ? translate(label.toString()) : undefined}
+            label={
+              label ? 
+              translate(label.toString())
+              : undefined
+            }
             placeholder={placeholder ? translate(placeholder) : ""}
+            size='medium'
             style={Form.input}
           />
         </Layout>
