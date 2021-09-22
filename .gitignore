@@ -64,3 +64,4 @@ buck-out/
 # firebase configuration
 */*/google-services.json
 */GoogleService-Info.plist
+*/*/firebaseConfig.tsx

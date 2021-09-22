@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
+import { connect, useDispatch } from 'react-redux';
 import { StackScreenProps } from '@react-navigation/stack'
 import { scale, verticalScale } from 'react-native-size-matters';
+import { Layout } from '@ui-kitten/components';
 import CustomInput from '../components/CustomInput';
 import FormContainer from '../components/FormContainer';
 import { useForm } from '../hooks/useForm';
@@ -19,12 +21,21 @@ import {
 } from '../resources/translations/translationKeyConstants';
 import CustomButton from '../components/CustomButton';
 import CenterContentContainer from '../components/CenterContentContainer';
-import { Layout } from '@ui-kitten/components';
 import CustomText from '../components/CustomText';
+import { RootState } from '../services/redux/rootReducer';
+import { AuthNavigatorStackParams } from '../navigation/AuthNavigator';
+import { AuthState } from '../services/redux/auth/authReducer';
+import { signIn } from '../services/redux/auth/authActions';
 
-interface Props extends StackScreenProps<any, any> { }
+interface Props extends StackScreenProps<AuthNavigatorStackParams, 'LoginScreen'> { }
 
-const LoginScreen = ({ navigation }: Props) => {
+interface PropsWithState extends Props {
+    authState: AuthState
+}
+
+const LoginScreen = ({ navigation, authState }: PropsWithState) => {
+
+    const dispatch = useDispatch()
 
     const { email, password, onChange } = useForm({
         email: '',
@@ -68,7 +79,7 @@ const LoginScreen = ({ navigation }: Props) => {
                             buttonText={LOGIN}
                             paddingHorizontal={ButtonPaddingHorizontal.PADDING_LARGE}
                             // style={ styles.loginButton }
-                            onPress={ () => navigation.replace('SignUpScreen') }
+                            onPress={() => dispatch (signIn(email, password)) }
                         />
                         <CustomButton
                             size='medium'
@@ -105,5 +116,11 @@ const styles = StyleSheet.create({
     }
 });
 
+const stateMapsToProps = (state: RootState, ownProps: Props) => {
+    return {
+        ...ownProps,
+        authState: state.auth
+    }
+};
 
-export default LoginScreen;
+export default connect(stateMapsToProps)(LoginScreen);
