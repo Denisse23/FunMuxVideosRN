@@ -11,9 +11,10 @@ import firebaseConfig from './src/constants/firebaseConfig';
 //Kitten
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
-//Theme
 import {default as theme} from './src/resources/theme/theme.json';
-import AuthNavigator from './src/navigation/AuthNavigator';
+
+//Navigator
+import { AuthNavigator } from './src/navigation';
 
 // Store
 import store from './src/services/redux/store';

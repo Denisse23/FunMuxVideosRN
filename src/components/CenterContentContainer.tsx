@@ -1,8 +1,10 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+
+//Components
 import { Layout } from '@ui-kitten/components';
 
-const CenterContentContainer = ({ style, children } : any) => { 
+export const CenterContentContainer = ({ style, children } : any) => { 
     return (
         <Layout style={{
                 ... styles.centerContent,
@@ -11,7 +13,7 @@ const CenterContentContainer = ({ style, children } : any) => {
             {children}
         </Layout>
     )
-}
+};
 
 const styles = StyleSheet.create({
     centerContent: {
@@ -21,5 +23,3 @@ const styles = StyleSheet.create({
     },
     
 });
-
-export default CenterContentContainer;

@@ -1,12 +1,16 @@
 import React from 'react';
+
+//Components
 import { Text, TextProps } from '@ui-kitten/components';
+
+//Resources
 import { translate } from '../resources/translations';
   
 interface Props extends TextProps{
     textValue: string
 }
 
-const CustomText = (props: Props) => {
+export const CustomText = (props: Props) => {
     const { textValue } = props
     return (
         <Text
@@ -15,6 +19,4 @@ const CustomText = (props: Props) => {
             {translate(textValue)}
         </Text>
     );
-}
-
-export default CustomText;
+};

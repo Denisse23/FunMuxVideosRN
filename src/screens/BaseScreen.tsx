@@ -1,13 +1,15 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+//Components
 import { Layout } from '@ui-kitten/components';
 
 type Pros = {
     children: JSX.Element | JSX.Element[]
 }
 
-const BaseScreen = ({ children }: Pros) => {
+export const BaseScreen = ({ children }: Pros) => {
     const {top} = useSafeAreaInsets();
 
     return (
@@ -15,7 +17,7 @@ const BaseScreen = ({ children }: Pros) => {
             {children}
         </Layout>
     )
-}
+};
 
 const styles = StyleSheet.create({
     parentStyle: {
@@ -23,5 +25,3 @@ const styles = StyleSheet.create({
     },
     
 });
-
-export default BaseScreen;

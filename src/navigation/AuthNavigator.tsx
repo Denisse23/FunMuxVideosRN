@@ -2,13 +2,22 @@ import React, {useEffect} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { connect, useDispatch } from 'react-redux';
 import auth from '@react-native-firebase/auth';
+
+//Components
 import { Spinner } from '@ui-kitten/components';
-import LoginScreen from '../screens/LoginScreen';
-import SignUpScreen from '../screens/SignUpScreen';
-import HomeScreen from '../screens/HomeScreen';
+import { CenterContentContainer } from '../components';
+
+//Screens
+import { 
+    LogInScreen,
+    SignUpScreen,
+    HomeScreen,
+    BaseScreen 
+} from '../screens';
+
+//Services
 import { RootState } from '../services/redux/rootReducer';
-import { updateAuthStatus } from '../services/redux/auth/authActions';
-import BaseScreen from '../screens/BaseScreen';
+import { updateAuthStatus, AuthState  } from '../services/redux/auth';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -17,7 +26,11 @@ export type AuthNavigatorStackParams = {
   SignUpScreen: undefined
 }
 
-const AuthNavigator = ({authState}: any) => {
+interface Props {
+  authState: AuthState
+}
+
+const AuthNavigatorComponent = ({ authState }: Props) => {
 
   const dispatch = useDispatch()
 
@@ -31,10 +44,12 @@ const AuthNavigator = ({authState}: any) => {
   if (authState.status === 'checking') {
     return (
       <BaseScreen>
+        <CenterContentContainer>
           <Spinner 
             status='primary'
-            size='medium'
+            size='giant'
           />
+        </CenterContentContainer>
       </BaseScreen>
     )
   }
@@ -52,7 +67,7 @@ const AuthNavigator = ({authState}: any) => {
       {
         (authState.status !== 'authenticated') ? (
           <>
-            <Screen name='LoginScreen' component={LoginScreen}/>
+            <Screen name='LogInScreen' component={LogInScreen}/>
             <Screen name='SignUpScreen' component={SignUpScreen}/>
           </>
         )
@@ -75,4 +90,4 @@ const stateMapsToProps = (state: RootState) => {
   }
 };
 
-export default connect(stateMapsToProps)(AuthNavigator);
+export const AuthNavigator = connect(stateMapsToProps)(AuthNavigatorComponent)

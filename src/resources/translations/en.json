@@ -1,14 +1,15 @@
 {
-    "login": {
-        "loginTitle": "Sing into your account",
+    "logIn": {
+        "logInTitle": "Log into your account",
         "emailLabel": "Email",
         "passwordLabel": "Password",
         "emailPlaceholder": "Type your email here",
         "passwordPlaceholder": "Type your password here",
         "signUp": "Sign Up",
-        "login": "Login"
+        "logIn": "Log In",
+        "logOut": "Log Out"
     },
-    "signup": {
+    "signUp": {
         "signUpTitle": "Create a new account",
         "firstNameLabel": "First Name",
         "firstNamePlaceholder": "John",

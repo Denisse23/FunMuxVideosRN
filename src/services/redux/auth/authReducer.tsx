@@ -17,9 +17,10 @@ const AuthInitialState: AuthState = {
     user: null
 }
 
-const authReducer =  (state: AuthState = AuthInitialState, action: AuthAction): AuthState => {
+export const authReducer =  (state: AuthState = AuthInitialState, action: AuthAction): AuthState => {
     switch (action.type) {
         case 'SIGN_UP':
+        case 'LOGOUT':
             return {
                 ...state,
                 status: 'checking',
@@ -53,6 +54,4 @@ const authReducer =  (state: AuthState = AuthInitialState, action: AuthAction): 
         default:
             return state
     }
-}
-
-export default authReducer
+};

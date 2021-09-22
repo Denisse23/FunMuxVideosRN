@@ -5,6 +5,7 @@ import {
     ScrollView,
 } from 'react-native';
 
+//Resources
 import { Form } from '../resources/style';
 
 
@@ -12,7 +13,7 @@ type Props = {
     children?: JSX.Element[] | JSX.Element
 } 
   
-const CustomForm = ({ children }: Props) => {
+export const FormContainer = ({ children }: Props) => {
     return (
         <KeyboardAvoidingView
             keyboardVerticalOffset={Platform.select({ios: 0, android: -50})}
@@ -24,7 +25,5 @@ const CustomForm = ({ children }: Props) => {
             </ScrollView>
         </KeyboardAvoidingView>
     );
-}
-
-export default CustomForm;
+};
     

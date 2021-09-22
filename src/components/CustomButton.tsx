@@ -1,14 +1,18 @@
 import React from 'react';
+
+//Components
 import { Button, ButtonProps} from '@ui-kitten/components';
+import { CustomText } from './';
+
+//Resources
 import { Buttons, ButtonPaddingHorizontal } from '../resources/style'
-import CustomText from './CustomText';
 
 interface Props extends ButtonProps {
     buttonText?: string,
     paddingHorizontal?: ButtonPaddingHorizontal
 }
   
-const CustomButton = (props: Props) => {
+export const CustomButton = (props: Props) => {
     const { buttonText, paddingHorizontal, style} = props
     return (
         <Button
@@ -22,6 +26,4 @@ const CustomButton = (props: Props) => {
             {buttonText && <CustomText textValue={buttonText}/> }
         </Button>
     );
-}
-
-export default CustomButton;
+};

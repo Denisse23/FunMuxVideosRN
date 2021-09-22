@@ -1,39 +1,46 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { StackScreenProps } from '@react-navigation/stack'
 import { scale, verticalScale } from 'react-native-size-matters';
-import { Layout } from '@ui-kitten/components';
-import CustomInput from '../components/CustomInput';
-import FormContainer from '../components/FormContainer';
-import { useForm } from '../hooks/useForm';
-import BaseScreen from './BaseScreen';
-import { ButtonPaddingHorizontal } from '../resources/style'
 
+//Components
+import { Layout } from '@ui-kitten/components';
 import { 
-    LOGIN_TITLE,
+    CustomInput, 
+    FormContainer, 
+    CustomButton, 
+    CenterContentContainer,
+    CustomText
+} from '../components';
+
+//Screens
+import { BaseScreen } from './';
+
+//Hooks
+import { useForm } from '../hooks/useForm';
+
+// Resources
+import { ButtonPaddingHorizontal } from '../resources/style'
+import { 
+    LOG_IN_TITLE,
     EMAIL_LABEL, 
     EMAIL_PLACEHOLDER,
     PASSWORD_LABEL,
     PASSWORD_PLACEHOLDER,
     SIGN_UP,
-    LOGIN
+    LOG_IN
 } from '../resources/translations/translationKeyConstants';
-import CustomButton from '../components/CustomButton';
-import CenterContentContainer from '../components/CenterContentContainer';
-import CustomText from '../components/CustomText';
-import { RootState } from '../services/redux/rootReducer';
-import { AuthNavigatorStackParams } from '../navigation/AuthNavigator';
-import { AuthState } from '../services/redux/auth/authReducer';
-import { signIn } from '../services/redux/auth/authActions';
+
+//Navigation
+import { AuthNavigatorStackParams } from '../navigation';
+
+//Services
+import { logIn } from '../services/redux/auth';
 
 interface Props extends StackScreenProps<AuthNavigatorStackParams, 'LoginScreen'> { }
 
-interface PropsWithState extends Props {
-    authState: AuthState
-}
-
-const LoginScreen = ({ navigation, authState }: PropsWithState) => {
+export const LogInScreen = ({ navigation }: Props) => {
 
     const dispatch = useDispatch()
 
@@ -47,7 +54,7 @@ const LoginScreen = ({ navigation, authState }: PropsWithState) => {
            <CenterContentContainer>
                <CustomText 
                     category='h5'
-                    textValue={LOGIN_TITLE}
+                    textValue={LOG_IN_TITLE}
                     style={ styles.title }
                 />
                 <FormContainer>
@@ -76,10 +83,10 @@ const LoginScreen = ({ navigation, authState }: PropsWithState) => {
                             appearance='filled'
                             status='primary'
                             activeOpacity={0.8}
-                            buttonText={LOGIN}
+                            buttonText={LOG_IN}
                             paddingHorizontal={ButtonPaddingHorizontal.PADDING_LARGE}
                             // style={ styles.loginButton }
-                            onPress={() => dispatch (signIn(email, password)) }
+                            onPress={() => dispatch (logIn(email, password)) }
                         />
                         <CustomButton
                             size='medium'
@@ -115,12 +122,3 @@ const styles = StyleSheet.create({
         marginBottom: verticalScale(80),
     }
 });
-
-const stateMapsToProps = (state: RootState, ownProps: Props) => {
-    return {
-        ...ownProps,
-        authState: state.auth
-    }
-};
-
-export default connect(stateMapsToProps)(LoginScreen);

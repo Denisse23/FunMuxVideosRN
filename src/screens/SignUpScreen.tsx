@@ -1,13 +1,24 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import CustomInput from '../components/CustomInput';
-import FormContainer from '../components/FormContainer';
-import { useForm } from '../hooks/useForm';
-import BaseScreen from './BaseScreen';
+//Components
+import { 
+    CustomInput,
+    FormContainer,
+    CenterContentContainer,
+    CustomButton,
+    CustomText
+} from '../components';
 
+//Hooks
+import { useForm } from '../hooks/useForm';
+
+//Screns
+import { BaseScreen } from './';
+
+//Resources
 import { 
     SIGN_UP_TITLE,
     FIRST_NAME_LABEL,
@@ -22,14 +33,11 @@ import {
     RETURN_TO_LOGIN,
     SIGN_UP
 } from '../resources/translations/translationKeyConstants';
-import CenterContentContainer from '../components/CenterContentContainer';
-import CustomButton from '../components/CustomButton';
-import CustomText from '../components/CustomText';
 import { ButtonPaddingHorizontal } from '../resources/style';
 
 interface Props extends StackScreenProps<any, any> { }
 
-const SignUpScreen = ({ navigation }: Props) => {
+export const SignUpScreen = ({ navigation }: Props) => {
 
     const { email, password, firstName, lastName, onChange } = useForm({
         email: '',
@@ -137,6 +145,3 @@ const styles = StyleSheet.create({
     }
     
 });
-
-
-export default SignUpScreen;
