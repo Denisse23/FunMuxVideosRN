@@ -6,11 +6,11 @@ import { Text, TextProps } from '@ui-kitten/components';
 //Resources
 import { translate } from '../resources/translations';
   
-interface Props extends TextProps{
+export interface CustomTextProps extends TextProps{
     textValue: string
 }
 
-export const CustomText = (props: Props) => {
+export const CustomText = (props: CustomTextProps) => {
     const { textValue } = props
     return (
         <Text

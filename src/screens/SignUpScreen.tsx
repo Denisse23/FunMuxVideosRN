@@ -105,7 +105,7 @@ export const SignUpScreen = ({ navigation }: Props) => {
                     activeOpacity={0.6}
                     buttonText={RETURN_TO_LOGIN}
                     style={ styles.returnToLoginButton}
-                    onPress={ () => navigation.replace('LoginScreen') }
+                    onPress={ () => navigation.replace('LogInScreen') }
                 />
                 <CustomButton
                     size='medium'

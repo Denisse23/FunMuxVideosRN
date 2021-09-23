@@ -17,5 +17,11 @@
         "lastNamePlaceholder": "Baldwin",
         "confirmPasswordLabel": "Confirm your password",
         "returnToLogin": "I already have an account!"
+    },
+    "formErrors": {
+        "requiredFieldError": "This field is required",
+        "emailPatternError": "Make sure you are entering an email",
+        "passwordLengthError": "Your password should be more than 6 characters",
+        "passwordPatternError": "Your password should contain uppercase, lowercase and numbers."
     }
 }

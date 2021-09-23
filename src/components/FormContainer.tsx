@@ -10,7 +10,7 @@ import { Form } from '../resources/style';
 
 
 type Props = {
-    children?: JSX.Element[] | JSX.Element
+    children?: React.ReactNode | React.ReactNode[]
 } 
   
 export const FormContainer = ({ children }: Props) => {

@@ -1,10 +1,15 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 
 //Components
 import { Layout } from '@ui-kitten/components';
 
-export const CenterContentContainer = ({ style, children } : any) => { 
+type Props = {
+    style?: StyleProp<ViewStyle>,
+    children?: React.ReactNode | React.ReactNode[]
+} 
+
+export const CenterContentContainer = ({ style, children } : Props) => { 
     return (
         <Layout style={{
                 ... styles.centerContent,

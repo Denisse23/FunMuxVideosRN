@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Layout } from '@ui-kitten/components';
 
 type Pros = {
-    children: JSX.Element | JSX.Element[]
+    children?: React.ReactNode | React.ReactNode[]
 }
 
 export const BaseScreen = ({ children }: Pros) => {

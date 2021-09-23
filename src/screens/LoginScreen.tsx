@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 import { useDispatch } from 'react-redux';
 import { StackScreenProps } from '@react-navigation/stack'
 import { scale, verticalScale } from 'react-native-size-matters';
+import { useForm, Controller } from "react-hook-form";
 
 //Components
 import { Layout } from '@ui-kitten/components';
@@ -11,14 +12,12 @@ import {
     FormContainer, 
     CustomButton, 
     CenterContentContainer,
-    CustomText
+    CustomText,
+    FormErrorText
 } from '../components';
 
 //Screens
 import { BaseScreen } from './';
-
-//Hooks
-import { useForm } from '../hooks/useForm';
 
 // Resources
 import { ButtonPaddingHorizontal } from '../resources/style'
@@ -29,25 +28,35 @@ import {
     PASSWORD_LABEL,
     PASSWORD_PLACEHOLDER,
     SIGN_UP,
-    LOG_IN
+    LOG_IN,
+    REQUIRED_FIELD_ERROR,
+    PASSWORD_LENGTH_ERROR
 } from '../resources/translations/translationKeyConstants';
+import { EMAIL_PATTERN, PASSWORD_PATTERN } from '../constants/patterns';
 
 //Navigation
 import { AuthNavigatorStackParams } from '../navigation';
 
 //Services
 import { logIn } from '../services/redux/auth';
+import { EMAIL_PATTERN_ERROR, PASSWORD_PATTERN_ERROR } from '../resources/translations/translationKeyConstants';
 
 interface Props extends StackScreenProps<AuthNavigatorStackParams, 'LoginScreen'> { }
+
+interface LogInFormInputs {
+    email: string
+    password: string
+}
 
 export const LogInScreen = ({ navigation }: Props) => {
 
     const dispatch = useDispatch()
 
-    const { email, password, onChange } = useForm({
-        email: '',
-        password: ''
-    })
+    const { control, handleSubmit, formState: { errors } } = useForm<LogInFormInputs>();
+
+    const onSubmit = (data: LogInFormInputs) => {
+        dispatch( logIn(data.email, data.password) )
+    }
 
     return (
         <BaseScreen>
@@ -58,24 +67,72 @@ export const LogInScreen = ({ navigation }: Props) => {
                     style={ styles.title }
                 />
                 <FormContainer>
-                    <CustomInput 
-                        label={EMAIL_LABEL} 
-                        placeholder={EMAIL_PLACEHOLDER}
-                        value={email}
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        keyboardType='email-address'
-                        onChangeText={(value) => onChange(value, 'email')}
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: {
+                                value: true,
+                                message: REQUIRED_FIELD_ERROR
+                            },
+                            pattern: {
+                                value: EMAIL_PATTERN,
+                                message: EMAIL_PATTERN_ERROR
+                            }
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <CustomInput 
+                                label={EMAIL_LABEL} 
+                                placeholder={EMAIL_PLACEHOLDER}
+                                autoCorrect={false}
+                                autoCapitalize='none'
+                                keyboardType='email-address'
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                        )}
+                        name='email'
+                        defaultValue=''
                     />
-                    <CustomInput    
-                        label={PASSWORD_LABEL}
-                        placeholder={PASSWORD_PLACEHOLDER}
-                        value={password}
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        secureTextEntry
-                        onChangeText={(value) => onChange(value, 'password')}
+                    {
+                        errors.email && errors.email.message &&
+                        <FormErrorText textValue={errors.email.message}/>
+                    }
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: {
+                                value: true,
+                                message: REQUIRED_FIELD_ERROR
+                            },
+                            minLength: {
+                                value: 6,
+                                message: PASSWORD_LENGTH_ERROR
+                            },
+                            pattern: {
+                                value: PASSWORD_PATTERN,
+                                message: PASSWORD_PATTERN_ERROR
+                            }
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <CustomInput    
+                                label={PASSWORD_LABEL}
+                                placeholder={PASSWORD_PLACEHOLDER}
+                                autoCorrect={false}
+                                autoCapitalize='none'
+                                secureTextEntry
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                        )}
+                        name='password'
+                        defaultValue=''
                     />
+                    {
+                        errors.password && errors.password.message &&
+                        <FormErrorText textValue={errors.password.message}/>
+                    }
                 </FormContainer>
                     <Layout style={styles.buttonsContainer}>
                         <CustomButton
@@ -85,8 +142,7 @@ export const LogInScreen = ({ navigation }: Props) => {
                             activeOpacity={0.8}
                             buttonText={LOG_IN}
                             paddingHorizontal={ButtonPaddingHorizontal.PADDING_LARGE}
-                            // style={ styles.loginButton }
-                            onPress={() => dispatch (logIn(email, password)) }
+                            onPress={ handleSubmit(onSubmit) }
                         />
                         <CustomButton
                             size='medium'
@@ -94,7 +150,6 @@ export const LogInScreen = ({ navigation }: Props) => {
                             status='basic'
                             activeOpacity={0.6}
                             buttonText={SIGN_UP}
-                            // style={ styles.signUpButton }
                             onPress={ () => navigation.replace('SignUpScreen') }
                         />
                     </Layout>

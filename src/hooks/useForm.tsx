@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useForm = <T extends Object>( initState: T ) => {
+export const useFormm = <T extends Object>( initState: T ) => {
     
     const [state, setState] = useState( initState );
 
